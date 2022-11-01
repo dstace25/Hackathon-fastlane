@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: post-deployment
+  labels:
+    app: post
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: post
+  template:
+    metadata:
+      labels:
+        app: post
+    spec:
+      containers:
+      - name: post
+        image: eu.gcr.io/cloud-ready-roke-team-4/post-api:v1.0
+        ports:
+        - containerPort: 3000
+        env:
+          - name: DATABASE_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: DATABASE_USERNAME
+                optional: false 
+          - name: DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: DATABASE_PASSWORD
+                optional: false 
+          - name: DATABASE_HOST
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: DATABASE_HOST
+                optional: false 
+          - name: DATABASE_PORT
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: DATABASE_PORT
+                optional: false 
+          - name: DATABASE_NAME
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: DATABASE_NAME
+                optional: false 
+          - name: MEDIA_SERVICE_URL
+            value: "http://media-service:80"
+---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: post-service
+  spec:
+    ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 3000
+    selector:
+      app: post
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: post-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: /posts
+        backend:
+          service:
+            name: post-service
+            port:
+              number: 80
