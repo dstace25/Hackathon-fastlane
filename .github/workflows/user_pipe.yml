@@ -22,7 +22,7 @@ env:
   GKE_CLUSTER: team-4-cluster-1    # TODO: update to cluster name
   GKE_ZONE: europe-west2   # TODO: update to cluster zone
   DEPLOYMENT_NAME: user-deployment # TODO: update to deployment name
-  REPOSITORY: cloud-ready-roke-team-4/user-api # TODO: update to Artifact Registry docker repository
+  REPOSITORY: cloud-ready-roke-team-4 # TODO: update to Artifact Registry docker repository
   IMAGE: user-api
 
 jobs:
