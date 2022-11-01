@@ -22,7 +22,7 @@ env:
   GKE_CLUSTER: team-4-cluster-1    # TODO: update to cluster name
   GKE_ZONE: europe-west2   # TODO: update to cluster zone
   DEPLOYMENT_NAME: user-deployment # TODO: update to deployment name
-  REPOSITORY: eu.gcr.io/cloud-ready-roke-team-4/user-api # TODO: update to Artifact Registry docker repository
+  REPOSITORY: eu.gcr.io/cloud-ready-roke-team-4 # TODO: update to Artifact Registry docker repository
   IMAGE: user-api
 
 jobs:
@@ -68,7 +68,7 @@ jobs:
     - name: Build
       run: |-
         docker build \
-          --tag "$GAR_LOCATION/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA" \
+          --tag "$GAR_LOCATION/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" \
           ./odh-containers/user
