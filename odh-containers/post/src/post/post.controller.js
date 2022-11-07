@@ -8,7 +8,7 @@ function PostController () {
         // console.log(connection);
         return res.status(200).json({ "test": "test" });
     }
-
+        // new comment;
     const createPost = async (req, res) => {
         try {
             conn = typeorm.getConnection();
