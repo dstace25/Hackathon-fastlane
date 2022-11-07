@@ -17,7 +17,7 @@ on:
     branches:
       - 'main'
     paths:
-      - 'charity/**'
+      - 'odh-containers/charity/**'
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
