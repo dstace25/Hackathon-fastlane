@@ -79,7 +79,7 @@ jobs:
     # run tests
     - name: Test
       run: |-
-        npm test
+        npm --prefix odh-containers/charity test
 
     # Push the Docker image to Google Artifact Registry
     - name: Publish
