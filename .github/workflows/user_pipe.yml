@@ -15,7 +15,7 @@ name: Build and Deploy to GKE
 on:
   push:
     branches: [ "main" ]
-    paths: [ "user/**" ]
+    paths: [ "odh-containers/user/**" ]
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
