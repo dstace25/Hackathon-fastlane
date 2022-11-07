@@ -77,7 +77,10 @@ jobs:
           ./odh-containers/charity
 
     # run tests
-    - name: Test
+    - name: Install Test Dependencies
+      run: |-
+        npm --prefix odh-containers/charity install --dev
+    - name: Run tests
       run: |-
         npm --prefix odh-containers/charity test
 
