@@ -13,7 +13,7 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-database:
+database: 
   host: "cloud-ready-roke-team-4:europe-west:myinstance" # hostname of your database server
   name: "postgres" # name of your database
   username: "postgres" # database server username
