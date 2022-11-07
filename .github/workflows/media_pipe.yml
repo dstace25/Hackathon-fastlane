@@ -15,6 +15,7 @@ name: Build and Deploy to GKE
 on:
   push:
     branches: [ "main" ]
+    paths: [ "media/**" ]
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
