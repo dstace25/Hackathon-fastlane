@@ -73,6 +73,18 @@ jobs:
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" \
           ./odh-containers/user
+
+    # run tests
+    - name: Install Test Dependencies
+      working-directory: odh-containers/user
+      run: |-
+        npm install --dev
+
+    - name: Run tests
+      working-directory: odh-containers/user
+      run: |-
+        npm test
+    
     # Push the Docker image to Google Artifact Registry
     - name: Publish
       run: |-
