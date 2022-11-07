@@ -15,9 +15,9 @@ name: Build and Deploy to GKE
 on:
   push:
     branches:
-      - main
+      - 'main'
     paths:
-     - charity/**
+      - 'charity/**'
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
