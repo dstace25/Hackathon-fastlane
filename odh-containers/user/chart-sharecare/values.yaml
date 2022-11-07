@@ -1,0 +1,75 @@
+# Default values for sharecare.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: "eu.gcr.io/cloud-ready-roke-team-4/user-api" # Your Container Registry / Image name
+  tag: "v1.0" # Your Image Tag, should be overwritten when applying in CI/CD pipeline
+  pullPolicy: Always
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+database:
+  host: "cloud-ready-roke-team-4:europe-west:myinstance" # hostname of your database server
+  name: "postgres" # name of your database
+  username: "postgres" # database server username
+  password: "superstrongpassword1" # user's password
+  port: "\"5432\""
+  # Explanation: https://github.com/kubernetes/kubernetes/issues/82296#issuecomment-789209384
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  # host: 34.142.48.13 # your hostname
+  path: /users # path for the API
+  pathType: prefix
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
