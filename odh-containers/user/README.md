@@ -13,4 +13,3 @@ In order to run the API you'll need to set the following environment variables.
 |DATABASE_PASSWORD|password of the database user|
 |CONFIG_FILES_PATH|Path to mounted volume, if secrets are stored in files|
 
-THIS IS TO TEST THE PIPELINE
