@@ -75,6 +75,12 @@ jobs:
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" \
           ./odh-containers/charity
+
+    # run tests
+    - name: Test
+      run: |-
+        npm test
+
     # Push the Docker image to Google Artifact Registry
     - name: Publish
       run: |-
